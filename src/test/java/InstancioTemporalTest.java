@@ -78,4 +78,20 @@ public class InstancioTemporalTest {
 
         assertThat(Date.from(zonedDateTime.toInstant())).isInSameDayAs(temporalObject.date());
     }
+
+    @Seed(1)
+    @Test
+    void should_generate_same_string_every_day_using_Gen() {
+        String generated = Gen.text().pattern("#a#d").get();
+
+        assertThat(generated).isEqualTo("H3");
+    }
+
+    @Seed(1)
+    @Test
+    void should_generate_same_int_every_day_using_Gen() {
+        int generated = Gen.ints().range(0, 100).get();
+
+        assertThat(generated).isEqualTo(5);
+    }
 }
