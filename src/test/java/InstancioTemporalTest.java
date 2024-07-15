@@ -1,3 +1,4 @@
+import org.instancio.Gen;
 import org.instancio.Instancio;
 import org.instancio.Select;
 import org.instancio.junit.InstancioExtension;
@@ -33,6 +34,24 @@ public class InstancioTemporalTest {
                 .create();
 
         assertThat(temporalObject.localDate()).isEqualTo(LocalDate.of(2001, 5, 19));
+    }
+
+    @Seed(1)
+    @Test
+    void should_return_same_past_local_date_every_day_using_Gen() {
+        TemporalObject temporalObject = Instancio.of(TemporalObject.class)
+                .generate(Select.fields().ofType(LocalDate.class), gen -> Gen.temporal().localDate().past())
+                .create();
+
+        assertThat(temporalObject.localDate()).isEqualTo(LocalDate.of(2001, 5, 19));
+    }
+
+    @Seed(1)
+    @Test
+    void should_generate_same_past_local_date_every_day_using_Gen() {
+        LocalDate pastDate = Gen.temporal().localDate().past().get();
+
+        assertThat(pastDate).isEqualTo(LocalDate.of(2001, 5, 19));
     }
 
     @Seed(1)
