@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>instancio-test</artifactId>
+    <artifactId>instancio-local-date-bug</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
